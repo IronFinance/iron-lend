@@ -586,16 +586,16 @@ contract IronController is IronControllerStorage, IronControllerInterface, IronC
      * @param rToken The market to verify the transfer against
      * @param src The account which sources the tokens
      * @param dst The account which receives the tokens
-     * @param transfeRTokens The number of rTokens to transfer
+     * @param transferRTokens The number of rTokens to transfer
      * @return 0 if the transfer is allowed, otherwise a semi-opaque error code (See ErrorReporter.sol)
      */
-    function transferAllowed(address rToken, address src, address dst, uint transfeRTokens) external returns (uint) {
+    function transferAllowed(address rToken, address src, address dst, uint transferRTokens) external returns (uint) {
         // Pausing is a very serious situation - we revert to sound the alarms
         require(!transferGuardianPaused, "transfer is paused");
 
         // Currently the only consideration is whether or not
         //  the src is allowed to redeem this many tokens
-        uint allowed = redeemAllowedInternal(rToken, src, transfeRTokens);
+        uint allowed = redeemAllowedInternal(rToken, src, transferRTokens);
         if (allowed != uint(Error.NO_ERROR)) {
             return allowed;
         }
