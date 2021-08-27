@@ -65,7 +65,7 @@ contract RToken is RTokenInterface, Exponential, TokenErrorReporter {
      * @param tokens The number of tokens to transfer
      * @return Whether or not the transfer succeeded
      */
-    function transfeRTokens(address spender, address src, address dst, uint tokens) internal returns (uint) {
+    function transferRTokens(address spender, address src, address dst, uint tokens) internal returns (uint) {
         /* Fail if transfer not allowed */
         uint allowed = ironController.transferAllowed(address(this), src, dst, tokens);
         if (allowed != 0) {
@@ -134,7 +134,7 @@ contract RToken is RTokenInterface, Exponential, TokenErrorReporter {
      * @return Whether or not the transfer succeeded
      */
     function transfer(address dst, uint256 amount) external nonReentrant returns (bool) {
-        return transfeRTokens(msg.sender, msg.sender, dst, amount) == uint(Error.NO_ERROR);
+        return transferRTokens(msg.sender, msg.sender, dst, amount) == uint(Error.NO_ERROR);
     }
 
     /**
@@ -145,7 +145,7 @@ contract RToken is RTokenInterface, Exponential, TokenErrorReporter {
      * @return Whether or not the transfer succeeded
      */
     function transferFrom(address src, address dst, uint256 amount) external nonReentrant returns (bool) {
-        return transfeRTokens(msg.sender, src, dst, amount) == uint(Error.NO_ERROR);
+        return transferRTokens(msg.sender, src, dst, amount) == uint(Error.NO_ERROR);
     }
 
     /**
