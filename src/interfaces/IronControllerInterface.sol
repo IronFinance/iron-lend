@@ -59,8 +59,8 @@ contract IronControllerInterface {
         address borrower,
         uint seizeTokens) external;
 
-    function transferAllowed(address RToken, address src, address dst, uint transfeRTokens) external returns (uint);
-    function transferVerify(address RToken, address src, address dst, uint transfeRTokens) external;
+    function transferAllowed(address RToken, address src, address dst, uint transferRTokens) external returns (uint);
+    function transferVerify(address RToken, address src, address dst, uint transferRTokens) external;
 
     /*** Liquidity/Liquidation Calculations ***/
 
